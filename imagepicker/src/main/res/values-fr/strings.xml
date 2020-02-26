@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Image Picker</string>
+
+    <string name="title_choose_image_provider">Choisissez</string>
+    <string name="action_cancel">Annuler</string>
+    <string name="title_gallery_image">Image</string>
+    <string name="title_gallery_video">Vidéo</string>
+    <string name="title_camera_image">Photo</string>
+    <string name="title_camera_video">Vidéo</string>
+
+    <string name="image_picker_provider_authority_suffix">.provider</string>
+
+    <string name="message_gallery_permission_denied">La permission de lecture sur le disque externe est nécessaire pour selectionner une image. Veuillez l\'activer dans Parametres > Permission sur votre appareil</string>
+    <string name="message_camera_permission_denied">Les permissions "Camera" et "Lecture sur le disque externe" sont nécessaire pour choisir une image. Refuser ces permissions limitera votre expérience dans l\'application</string>
+
+    <string name="permission_gallery_denied">
+        <![CDATA[La permission de stockage est nécessaire pour choisir une image. Veuillez activer la permission dans les réglages de votre appareil]]></string>
+    <string name="permission_camera_extended_denied">
+        <![CDATA[Les permissions de stockage et de caméra est nécessaire pour choisir une image. Veuillez activer les permissions dans les réglages de votre appareil]]></string>
+    <string name="permission_camera_denied">
+        <![CDATA[La permission de stockage est nécessaire pour choisir une image. Veuillez activer la permission dans les réglages de votre appareil]]></string>
+
+    <string name="error_failed_to_create_camera_image_file">La création du fichier d\'image a échoué</string>
+    <string name="error_failed_pick_gallery_image">Le choix d\'image a échoué</string>
+    <string name="error_failed_to_crop_image">Le tronquage d\'image a échoué</string>
+    <string name="error_failed_to_compress_image">La compression d\'image a échoué</string>
+    <string name="error_task_cancelled">Tâche annulée</string>
+</resources>

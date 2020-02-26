@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.github.dhaval2404.imagepicker.constant.ImageProvider
+import com.github.dhaval2404.imagepicker.constant.MediaProvider
 import com.github.dhaval2404.imagepicker.listener.ResultListener
 import com.github.dhaval2404.imagepicker.util.DialogHelper
 import com.github.florent37.inlineactivityresult.kotlin.startForResult
@@ -59,12 +59,7 @@ open class ImagePicker {
          * Get error message from intent
          */
         fun getError(data: Intent?): String {
-            val error = data?.getStringExtra(EXTRA_ERROR)
-            if (error != null) {
-                return error
-            } else {
-                return "Unknown Error!"
-            }
+            return data?.getStringExtra(EXTRA_ERROR) ?: "Unknown Error!"
         }
 
         /**
@@ -91,7 +86,7 @@ open class ImagePicker {
         private var fragment: Fragment? = null
 
         // Image Provider
-        private var imageProvider = ImageProvider.BOTH
+        private var imageProvider = MediaProvider.BOTH
 
         /*
          * Crop Parameters
@@ -121,8 +116,8 @@ open class ImagePicker {
         /**
          * Specify Image Provider (Camera, Gallery or Both)
          */
-        fun provider(imageProvider: ImageProvider): Builder {
-            this.imageProvider = imageProvider
+        fun provider(mediaProvider: MediaProvider): Builder {
+            this.imageProvider = mediaProvider
             return this
         }
 
@@ -131,7 +126,7 @@ open class ImagePicker {
          */
         // @Deprecated("Please use provider(ImageProvider.CAMERA) instead")
         fun cameraOnly(): Builder {
-            this.imageProvider = ImageProvider.CAMERA
+            this.imageProvider = MediaProvider.CAMERA_IMAGE
             return this
         }
 
@@ -140,7 +135,7 @@ open class ImagePicker {
          */
         // @Deprecated("Please use provider(ImageProvider.GALLERY) instead")
         fun galleryOnly(): Builder {
-            this.imageProvider = ImageProvider.GALLERY
+            this.imageProvider = MediaProvider.GALLERY_IMAGE
             return this
         }
 
@@ -203,7 +198,7 @@ open class ImagePicker {
          * Start Image Picker Activity
          */
         fun start(reqCode: Int) {
-            if (imageProvider == ImageProvider.BOTH) {
+            if (imageProvider == MediaProvider.BOTH) {
                 // Pick Image Provider if not specified
                 showImageProviderDialog(reqCode)
             } else {
@@ -215,7 +210,7 @@ open class ImagePicker {
          * Start Image Picker Activity
          */
         fun start(completionHandler: ((resultCode: Int, data: Intent?) -> Unit)? = null) {
-            if (imageProvider == ImageProvider.BOTH) {
+            if (imageProvider == MediaProvider.BOTH) {
                 // Pick Image Provider if not specified
                 showImageProviderDialog(completionHandler)
             } else {
@@ -227,8 +222,8 @@ open class ImagePicker {
          * Pick Image Provider if not specified
          */
         private fun showImageProviderDialog(reqCode: Int) {
-            DialogHelper.showChooseAppDialog(activity, object : ResultListener<ImageProvider> {
-                override fun onResult(t: ImageProvider?) {
+            DialogHelper.showChooseAppDialog(activity, object : ResultListener<MediaProvider> {
+                override fun onResult(t: MediaProvider?) {
                     t?.let {
                         imageProvider = it
                         startActivity(reqCode)
@@ -241,8 +236,8 @@ open class ImagePicker {
          * Pick Image Provider if not specified
          */
         private fun showImageProviderDialog(completionHandler: ((resultCode: Int, data: Intent?) -> Unit)? = null) {
-            DialogHelper.showChooseAppDialog(activity, object : ResultListener<ImageProvider> {
-                override fun onResult(t: ImageProvider?) {
+            DialogHelper.showChooseAppDialog(activity, object : ResultListener<MediaProvider> {
+                override fun onResult(t: MediaProvider?) {
                     if (t != null) {
                         imageProvider = t
                         startActivity(completionHandler)

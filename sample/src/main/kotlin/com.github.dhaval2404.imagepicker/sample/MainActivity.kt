@@ -69,8 +69,6 @@ class MainActivity : AppCompatActivity() {
         ImagePicker.with(this)
             // Crop Image(User can choose Aspect Ratio)
             .crop()
-            // User can only select image from Gallery
-            .galleryOnly()
             // Image resolution will be less than 1080 x 1920
             .maxResultSize(1080, 1920)
             .start(GALLERY_IMAGE_REQ_CODE)
@@ -78,8 +76,6 @@ class MainActivity : AppCompatActivity() {
 
     fun pickCameraImage(view: View) {
         ImagePicker.with(this)
-            // User can only capture image from Camera
-            .cameraOnly()
             // Image size will be less than 1024 KB
             .compress(1024)
             .start(CAMERA_IMAGE_REQ_CODE)

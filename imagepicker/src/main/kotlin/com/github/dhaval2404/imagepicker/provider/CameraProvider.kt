@@ -8,6 +8,7 @@ import android.os.Bundle
 import androidx.core.app.ActivityCompat.requestPermissions
 import com.github.dhaval2404.imagepicker.ImagePickerActivity
 import com.github.dhaval2404.imagepicker.R
+import com.github.dhaval2404.imagepicker.constant.MediaProvider
 import com.github.dhaval2404.imagepicker.util.FileUtil
 import com.github.dhaval2404.imagepicker.util.IntentUtils
 import com.github.dhaval2404.imagepicker.util.PermissionUtil
@@ -21,7 +22,9 @@ import java.io.File
  * @version 1.0
  * @since 04 January 2019
  */
-class CameraProvider(activity: ImagePickerActivity) : BaseProvider(activity) {
+class CameraProvider(
+    activity: ImagePickerActivity,
+    val provider: MediaProvider) : BaseProvider(activity) {
 
     companion object {
         /**
@@ -111,12 +114,32 @@ class CameraProvider(activity: ImagePickerActivity) : BaseProvider(activity) {
      */
     private fun startCameraIntent() {
         // Create and get empty file to store capture image content
-        val file = FileUtil.getImageFile()
+        val file = when (provider) {
+            MediaProvider.CAMERA_IMAGE -> {
+                FileUtil.getImageFile()
+            }
+            MediaProvider.CAMERA_VIDEO -> {
+                FileUtil.getVideoFile()
+            }
+            else -> {
+                throw Error("Correct provider must be passed")
+            }
+        }
         mCameraFile = file
 
         // Check if file exists
         if (file != null && file.exists()) {
-            val cameraIntent = IntentUtils.getCameraIntent(this, file)
+            val cameraIntent = when (provider) {
+                MediaProvider.CAMERA_IMAGE -> {
+                    IntentUtils.getImageCameraIntent(this, file)
+                }
+                MediaProvider.CAMERA_VIDEO -> {
+                    IntentUtils.getVideoCameraIntent(this, file)
+                }
+                else -> {
+                    throw Error("Correct provider must be passed")
+                }
+            }
             activity.startActivityForResult(cameraIntent, CAMERA_INTENT_REQ_CODE)
         } else {
             setError(R.string.error_failed_to_create_camera_image_file)

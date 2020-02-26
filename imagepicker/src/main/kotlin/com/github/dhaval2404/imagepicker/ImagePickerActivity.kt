@@ -7,7 +7,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.github.dhaval2404.imagepicker.constant.ImageProvider
+import com.github.dhaval2404.imagepicker.constant.MediaProvider
 import com.github.dhaval2404.imagepicker.provider.CameraProvider
 import com.github.dhaval2404.imagepicker.provider.CompressionProvider
 import com.github.dhaval2404.imagepicker.provider.CropProvider
@@ -87,18 +87,29 @@ class ImagePickerActivity : AppCompatActivity() {
         mCompressionProvider = CompressionProvider(this)
 
         // Retrieve Image Provider
-        val provider: ImageProvider? =
-            intent?.getSerializableExtra(ImagePicker.EXTRA_IMAGE_PROVIDER) as ImageProvider?
+        val provider: MediaProvider? =
+            intent?.getSerializableExtra(ImagePicker.EXTRA_IMAGE_PROVIDER) as MediaProvider?
 
         // Create Gallery/Camera Provider
         when (provider) {
-            ImageProvider.GALLERY -> {
-                mGalleryProvider = GalleryProvider(this)
+            MediaProvider.GALLERY_IMAGE -> {
+                mGalleryProvider = GalleryProvider(this, provider)
                 // Pick Gallery Image
                 savedInstanceState ?: mGalleryProvider?.startIntent()
             }
-            ImageProvider.CAMERA -> {
-                mCameraProvider = CameraProvider(this)
+            MediaProvider.CAMERA_IMAGE -> {
+                mCameraProvider = CameraProvider(this, provider)
+                mCameraProvider?.onRestoreInstanceState(savedInstanceState)
+                // Pick Camera Image
+                savedInstanceState ?: mCameraProvider?.startIntent()
+            }
+            MediaProvider.GALLERY_VIDEO -> {
+                mGalleryProvider = GalleryProvider(this, provider)
+                // Pick Gallery Image
+                savedInstanceState ?: mGalleryProvider?.startIntent()
+            }
+            MediaProvider.CAMERA_VIDEO -> {
+                mCameraProvider = CameraProvider(this, provider)
                 mCameraProvider?.onRestoreInstanceState(savedInstanceState)
                 // Pick Camera Image
                 savedInstanceState ?: mCameraProvider?.startIntent()

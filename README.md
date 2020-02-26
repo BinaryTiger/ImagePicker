@@ -1,3 +1,10 @@
+# Changes of this fork
+
+- Let user pick a video OR an image from the camera or the gallery
+- French translations
+
+The readme, links, license, etc are kept the same. Please support the original author if you find value in this fork.
+
 # 📸Image Picker Library for Android
 
 [![Download](https://api.bintray.com/packages/dhaval2404/maven/imagepicker/images/download.svg) ](https://bintray.com/dhaval2404/maven/imagepicker/_latestVersion) 

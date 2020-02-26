@@ -7,8 +7,10 @@ package com.github.dhaval2404.imagepicker.constant
  * @version 1.0
  * @since 04 January 2019
  */
-enum class ImageProvider {
-    GALLERY,
-    CAMERA,
+enum class MediaProvider {
+    GALLERY_IMAGE,
+    CAMERA_IMAGE,
+    GALLERY_VIDEO,
+    CAMERA_VIDEO,
     BOTH
 }

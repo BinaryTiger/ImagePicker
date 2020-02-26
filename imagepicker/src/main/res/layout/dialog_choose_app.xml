@@ -17,6 +17,7 @@
         android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_camera_icon"
             android:layout_width="48dp"
             android:layout_height="48dp"
             app:srcCompat="@drawable/ic_photo_camera_black_48dp"
@@ -26,7 +27,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="@string/title_camera"
+            android:text="@string/title_camera_image"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/dialog_choose_text_color" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/video_camera_icon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            app:srcCompat="@drawable/ic_photo_camera_black_48dp"
+            app:tint="@color/dialog_choose_icon_color" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/title_camera_video"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/dialog_choose_text_color" />
 
@@ -42,6 +60,7 @@
         android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_gallery_icon"
             android:layout_width="48dp"
             android:layout_height="48dp"
             app:srcCompat="@drawable/ic_photo_black_48dp"
@@ -51,7 +70,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="@string/title_gallery"
+            android:text="@string/title_gallery_image"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/dialog_choose_text_color" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/video_gallery_icon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            app:srcCompat="@drawable/ic_photo_black_48dp"
+            app:tint="@color/dialog_choose_icon_color" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/title_gallery_video"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/dialog_choose_text_color" />
 

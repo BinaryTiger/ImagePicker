@@ -6,6 +6,7 @@ import android.content.Intent
 import androidx.core.app.ActivityCompat.requestPermissions
 import com.github.dhaval2404.imagepicker.ImagePickerActivity
 import com.github.dhaval2404.imagepicker.R
+import com.github.dhaval2404.imagepicker.constant.MediaProvider
 import com.github.dhaval2404.imagepicker.util.FileUriUtils
 import com.github.dhaval2404.imagepicker.util.IntentUtils
 import com.github.dhaval2404.imagepicker.util.PermissionUtil
@@ -18,7 +19,10 @@ import java.io.File
  * @version 1.0
  * @since 04 January 2019
  */
-class GalleryProvider(activity: ImagePickerActivity) : BaseProvider(activity) {
+class GalleryProvider(
+    activity: ImagePickerActivity,
+    val provider: MediaProvider
+) : BaseProvider(activity) {
 
     companion object {
         /**
@@ -56,7 +60,7 @@ class GalleryProvider(activity: ImagePickerActivity) : BaseProvider(activity) {
      * Start Gallery Intent
      */
     private fun startGalleryIntent() {
-        val galleryIntent = IntentUtils.getGalleryIntent(activity)
+        val galleryIntent = IntentUtils.getGalleryIntent(activity, provider)
         activity.startActivityForResult(galleryIntent, GALLERY_INTENT_REQ_CODE)
     }
 
