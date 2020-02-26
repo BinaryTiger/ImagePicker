@@ -24,7 +24,8 @@ import java.io.File
  */
 class CameraProvider(
     activity: ImagePickerActivity,
-    val provider: MediaProvider) : BaseProvider(activity) {
+    val provider: MediaProvider
+) : BaseProvider(activity) {
 
     companion object {
         /**
